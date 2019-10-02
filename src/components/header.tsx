@@ -1,39 +1,25 @@
 import { Link } from "gatsby"
 import React from "react"
-import styled from "styled-components"
+import styled from "@src/lib/styled"
+import { Box, Heading } from "rebass"
 
 type Props = {
   siteTitle: string
 }
 
-const StyledHeader = styled.header`
-  background: rebeccapurple;
-  margin-bottom: 1.45rem;
-`
-
-const StyledHeaderInner = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 1.45rem 1.0875rem;
-`
-
-const StyledHeaderH1 = styled.h1`
-  margin: 0 auto;
-`
-
 const StyledHeaderLink = styled(Link)`
-  color: white;
+  color: #fff;
   text-decoration: none;
 `
 
 const Header: React.FC<Props> = ({ siteTitle }) => (
-  <StyledHeader>
-    <StyledHeaderInner>
-      <StyledHeaderH1>
+  <Box sx={{ bg: "rebeccapurple", mb: 3 }}>
+    <Box sx={{ m: "auto", maxWidth: "960px", px: 3, py: 4 }}>
+      <Heading as="h1" m="auto">
         <StyledHeaderLink to="/">{siteTitle}</StyledHeaderLink>
-      </StyledHeaderH1>
-    </StyledHeaderInner>
-  </StyledHeader>
+      </Heading>
+    </Box>
+  </Box>
 )
 
 export default Header

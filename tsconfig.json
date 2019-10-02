@@ -17,7 +17,11 @@
         "removeComments": true,
         "sourceMap": true,
         "strictNullChecks": true,
-        "target": "esnext"
+        "target": "esnext",
+        "baseUrl": ".",
+        "paths": {
+            "@src/*": ["src/*"]
+        }
     },
     "include": ["./src/**/*"]
 }

@@ -1,18 +1,14 @@
 import React, { ReactNode } from "react"
-import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
+import { ThemeProvider } from "emotion-theming"
+import theme from "../themes/default"
 import GlobalStyles from "./styled/global"
 import Header from "./header"
+import { Box } from "rebass"
 
 type Props = {
   children: ReactNode
 }
-
-const StyledContainer = styled.div`
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 0 1.0875rem 1.45rem;
-`
 
 const Layout: React.FC<Props> = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -27,16 +23,18 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <GlobalStyles />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <StyledContainer>
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </StyledContainer>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <Box sx={{ maxWidth: "960px", pt: 0, px: 1, pb: 2, m: "auto" }}>
+          <main>{children}</main>
+          <footer>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </footer>
+        </Box>
+      </ThemeProvider>
     </>
   )
 }
